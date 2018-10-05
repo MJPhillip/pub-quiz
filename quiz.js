@@ -26,11 +26,19 @@ function showQuestions(result){
     shuffle(answerArray);
 
     for(var i=0; i < answerArray.length; i++){
-      document.getElementById('answers').innerHTML += "<input type='submit' onclick='checkAnswer()' value='" + answerArray[i] + "'>";
+      document.getElementById('answers').innerHTML += "<input type='submit' id='answer" + i + "' value='" + answerArray[i] + "'>";
     };
 
-    function checkAnswer(){
-      console.log("Hi")
-    }
-
+    for(var i=0; i < answerArray.length; i++){
+      var iteration = "answer" + i;
+      document.getElementById(iteration).addEventListener("click", function(){
+        var answerMessage = document.getElementById('answerMessage');
+        if(this.value === questionArray[0].correct_answer){
+          answerMessage.innerHTML = "<img src='https://media.giphy.com/media/NodvzZJVrWgKs/giphy.gif' />";
+        }
+        else{
+          answerMessage.innerHTML = "<img src='https://media.giphy.com/media/1014RBn4HVSTK/giphy.gif' />";
+        }
+      })
+    };
 };
